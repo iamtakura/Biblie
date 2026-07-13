@@ -66,14 +66,17 @@ const handleSave = async () => {
   background-color: var(--color-surface);
   color: var(--color-text);
   border: 1px solid var(--color-border);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: 0 var(--spacing-md);
+  min-height: 44px;
   border-radius: var(--border-radius);
   font-family: var(--font-sans);
-  font-size: 0.875rem;
-  display: flex;
+  font-size: 0.95rem;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 8px;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .save-btn:hover:not(:disabled) {
@@ -97,7 +100,8 @@ const handleSave = async () => {
   background-color: rgba(0,0,0,0.1);
   border: 1px solid var(--color-border);
   color: var(--color-text);
-  padding: 8px;
+  padding: 10px;
+  font-size: 16px;
   border-radius: 4px;
   resize: vertical;
   margin-bottom: var(--spacing-xs);
@@ -115,10 +119,15 @@ const handleSave = async () => {
 }
 
 .cancel-btn, .confirm-btn {
-  padding: 4px 12px;
+  padding: 0 16px;
+  min-height: 44px;
   border-radius: 4px;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-family: var(--font-sans);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .cancel-btn {

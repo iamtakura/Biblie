@@ -63,8 +63,9 @@ button {
   cursor: pointer;
 }
 
-input, textarea {
+input, textarea, select {
   font-family: var(--font-sans);
+  font-size: 16px; /* Prevents iOS auto-zoom on focused inputs < 16px */
 }
 
 /* Utilities */

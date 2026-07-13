@@ -91,7 +91,7 @@ const formatTime = (isoString: string) => {
 .sessions-page {
   max-width: 1000px;
   margin: 0 auto;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
 }
 
 .page-title {

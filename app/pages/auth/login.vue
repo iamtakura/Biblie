@@ -128,7 +128,9 @@ const handleLogin = async () => {
   background-color: rgba(0,0,0,0.2);
   border: 1px solid var(--color-border);
   color: var(--color-text);
-  padding: 10px;
+  padding: 10px 12px;
+  font-size: 16px;
+  min-height: 44px;
   border-radius: 4px;
 }
 
@@ -141,11 +143,16 @@ const handleLogin = async () => {
   background-color: var(--color-primary);
   color: var(--color-bg);
   border: none;
-  padding: 12px;
+  padding: 0 16px;
+  min-height: 44px;
   border-radius: 4px;
   font-weight: 600;
+  font-size: 1rem;
   margin-top: var(--spacing-sm);
   transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .submit-btn:hover:not(:disabled) {

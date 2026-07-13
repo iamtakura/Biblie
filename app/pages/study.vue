@@ -107,9 +107,13 @@ const getPreview = (text: string) => {
 .action-btn {
   background-color: var(--color-primary);
   color: var(--color-bg);
-  padding: 8px 24px;
-  border-radius: 20px;
+  padding: 0 24px;
+  min-height: 44px;
+  border-radius: 22px;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: opacity 0.2s;
 }
 

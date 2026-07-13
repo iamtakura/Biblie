@@ -69,7 +69,8 @@ const handleSubmit = () => {
   border: none;
   color: var(--color-text);
   font-size: 1.125rem;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-md);
+  min-height: 48px;
   outline: none;
 }
 
@@ -92,6 +93,7 @@ const handleSubmit = () => {
   align-items: center;
   justify-content: center;
   min-width: 80px;
+  min-height: 48px;
 }
 
 .submit-btn:hover:not(:disabled) {
