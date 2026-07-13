@@ -11,18 +11,15 @@
       />
       <button type="submit" class="submit-btn" :disabled="isLoading || !query.trim()">
         <span v-if="!isLoading">Seek</span>
-        <span v-else class="manuscript-loading" title="Seeking wisdom...">
-          <span class="flame">🔥</span>
-        </span>
+        <LoadingDots v-else title="Seeking wisdom..." />
       </button>
     </form>
-    
-    <!-- Optional: Suggestion dropdown could go here in future -->
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import LoadingDots from '~/components/LoadingDots.vue'
 
 const props = defineProps<{
   isLoading?: boolean
@@ -50,12 +47,14 @@ const handleSubmit = () => {
 .input-wrapper {
   position: relative;
   display: flex;
+  align-items: stretch;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: border-color 0.3s, box-shadow 0.3s;
   overflow: hidden;
+  width: 100%;
 }
 
 .input-wrapper:focus-within {
@@ -65,6 +64,7 @@ const handleSubmit = () => {
 
 .main-input {
   flex: 1;
+  min-width: 0; /* Ensures proper flex shrinking on narrow viewports */
   background: transparent;
   border: none;
   color: var(--color-text);
@@ -82,6 +82,7 @@ const handleSubmit = () => {
 }
 
 .submit-btn {
+  flex-shrink: 0; /* Prevents button clipping/squishing on small viewports */
   background-color: var(--color-primary);
   color: var(--color-bg);
   border: none;
@@ -94,6 +95,7 @@ const handleSubmit = () => {
   justify-content: center;
   min-width: 80px;
   min-height: 48px;
+  box-sizing: border-box;
 }
 
 .submit-btn:hover:not(:disabled) {
@@ -105,49 +107,16 @@ const handleSubmit = () => {
   cursor: not-allowed;
 }
 
-.manuscript-loading {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flame {
-  font-size: 1.15rem;
-  display: inline-block;
-  animation: flicker 1.8s ease-in-out infinite alternate;
-}
-
-@keyframes flicker {
-  0% {
-    opacity: 0.6;
-    transform: scale(0.92) translateY(0);
-    filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.4));
+@media (max-width: 480px) {
+  .main-input {
+    font-size: 1rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
   }
-  50% {
-    opacity: 1;
-    transform: scale(1.08) translateY(-1px);
-    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8));
-  }
-  100% {
-    opacity: 0.75;
-    transform: scale(0.96) translateY(0);
-    filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.5));
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .flame {
-    animation: simplePulse 2s ease-in-out infinite alternate;
-    transform: none;
-  }
-}
-
-@keyframes simplePulse {
-  from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 1;
+  
+  .submit-btn {
+    padding: 0 var(--spacing-sm);
+    min-width: 72px;
+    font-size: 0.95rem;
   }
 }
 </style>

@@ -8,7 +8,7 @@
     </div>
     
     <div v-if="isLoading" class="loading-state">
-      <span class="loading-indicator"></span>
+      <LoadingDots />
       <span class="loading-text">Seeking application...</span>
     </div>
 

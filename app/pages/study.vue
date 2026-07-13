@@ -3,7 +3,7 @@
     <h1 class="page-title">Study History</h1>
     
     <div v-if="studyStore.isLoadingHistory" class="loading-state">
-      <span class="loading-indicator"></span>
+      <LoadingDots />
       <span class="loading-text">Loading your study history...</span>
     </div>
 

@@ -4,6 +4,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
 
+  nitro: {
+    preset: 'vercel',
+  },
+
   app: {
     baseURL: process.env.NUXT_APP_BASE_URL || '/',
     head: {

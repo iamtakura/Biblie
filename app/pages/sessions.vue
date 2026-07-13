@@ -3,7 +3,8 @@
     <h1 class="page-title">Session History</h1>
 
     <div v-if="sessionsStore.isLoadingList" class="loading-state">
-      Loading your sessions...
+      <LoadingDots />
+      <span class="loading-text">Loading your sessions...</span>
     </div>
     <div v-else-if="sessionsStore.error" class="error-message">
       {{ sessionsStore.error }}
@@ -30,7 +31,8 @@
       <!-- Session Detail (Main Content) -->
       <div class="session-detail">
         <div v-if="sessionsStore.isLoadingDetail" class="loading-state">
-          Loading session details...
+          <LoadingDots />
+          <span class="loading-text">Loading session details...</span>
         </div>
         <div v-else-if="!sessionsStore.currentSessionDetail" class="empty-state detail-empty">
           Select a session to view history.

@@ -1,7 +1,7 @@
 <template>
   <div class="passage-view-page">
     <div v-if="isLoading" class="loading-state">
-      <span class="loading-indicator"></span>
+      <LoadingDots />
       <span class="loading-text">Loading passage...</span>
     </div>
 
