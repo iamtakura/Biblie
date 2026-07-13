@@ -1,0 +1,25 @@
+{
+  "name": "Biblie",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxtjs/supabase": "^2.0.9",
+    "@pinia/nuxt": "^0.11.3",
+    "bible-passage-reference-parser": "^3.2.0",
+    "nuxt": "^4.4.8",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.39",
+    "vue-router": "^5.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vue-tsc": "^3.3.7"
+  }
+}

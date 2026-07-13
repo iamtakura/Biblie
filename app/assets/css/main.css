@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap');
+
+:root {
+  /* Colors */
+  --color-bg: #1C1712; /* Warm espresso-brown */
+  --color-text: #F0E4C8; /* Parchment gold */
+  --color-primary: #C9974E; /* Antique gold */
+  --color-secondary: #7A3B2E; /* Burnt sienna */
+  --color-tertiary: #6B7355; /* Olive sage */
+  --color-surface: #2E251C; /* Surface elevation */
+  --color-border: rgba(240, 228, 200, 0.15); /* Subtle parchment border */
+
+  /* Typography */
+  --font-serif: 'Source Serif 4', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Layout */
+  --max-width: 1000px;
+  --max-width-reading: 700px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --border-radius: 4px;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-sm);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+input, textarea {
+  font-family: var(--font-sans);
+}
+
+/* Utilities */
+.reading-text {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.text-muted {
+  opacity: 0.7;
+}
+
+.text-small {
+  font-size: 0.875rem;
+}
+
+/* Custom Scrollbar for a more premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg); 
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface); 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-tertiary); 
+}
+
+/* Manuscript Drop Cap (Illuminated style) */
+.drop-cap::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  line-height: 1;
+  float: left;
+  margin-right: 0.5rem;
+  margin-bottom: -0.2rem;
+  color: var(--color-primary);
+  /* Optional: Add a subtle text shadow for illumination effect */
+  text-shadow: 0 0 10px rgba(201, 151, 78, 0.3);
+}
+
+/* Loading animations */
+@keyframes candleFlicker {
+  0% { opacity: 0.7; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.05); }
+  100% { opacity: 0.7; transform: scaleY(1); }
+}
+
+.loading-indicator {
+  display: inline-block;
+  width: 12px;
+  height: 20px;
+  background-color: var(--color-primary);
+  border-radius: 50% 50% 2px 2px;
+  animation: candleFlicker 1.5s infinite ease-in-out;
+  box-shadow: 0 0 10px var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-indicator {
+    animation: none;
+    opacity: 1;
+  }
+}
