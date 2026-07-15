@@ -49,7 +49,12 @@ export default defineNuxtConfig({
       ]
     },
     workbox: {
+      // Restrict the navigation fallback so it does NOT intercept /auth/* routes.
+      // Without this, the SW would intercept direct navigations to /auth/signup
+      // and return the cached '/' shell instead of hitting the Vercel serverless function,
+      // resulting in a 404 on direct URL access.
       navigateFallback: '/',
+      navigateFallbackAllowlist: [/^\/(?!auth\/).*/],
       globPatterns: ['**/*.{js,css,html,png,svg,woff2}'],
       runtimeCaching: [
         {
@@ -67,7 +72,7 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/auth/login',
       callback: '/auth/callback',
-      exclude: ['/', '/api/health'],
+      exclude: ['/', '/auth/signup', '/api/health'],
     },
   },
 
