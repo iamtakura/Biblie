@@ -5,6 +5,8 @@
       <h2 class="question-title">{{ response.question }}</h2>
     </div>
 
+    <ContextBanner v-if="response.context" :context="response.context" />
+
     <ModelFallbackNotice v-if="sourceModel" :sourceModel="sourceModel" />
 
     <div class="traditions-grid">

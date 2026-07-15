@@ -67,6 +67,7 @@ export interface ChapterBreakdownResponse {
 /** Response for general scripture-related questions (multi-tradition, no passage required). */
 export interface GeneralQaResponse {
     question: string
+    context?: string
     traditions: TraditionBlock[]
     divergenceNote: string
 }
@@ -74,6 +75,7 @@ export interface GeneralQaResponse {
 /** Response for moral/ethical questions ("is X a sin?"). Never opens with a yes/no verdict. */
 export interface MoralQuestionResponse {
     question: string
+    context?: string
     traditions: TraditionBlock[]
     scripturalConsiderations: string[] // relevant verse references across traditions
     divergenceNote: string

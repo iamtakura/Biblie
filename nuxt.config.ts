@@ -82,6 +82,6 @@ export default defineNuxtConfig({
     groqApiKey: process.env.GROQ_API_KEY ?? '',
     supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY ?? '',
     maxDailyRequests: Number(process.env.MAX_DAILY_REQUESTS ?? 50),
-    promptVersion: Number(process.env.PROMPT_VERSION ?? 1),
+    promptVersion: Number(process.env.PROMPT_VERSION ?? 2),
   },
 })
