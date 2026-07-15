@@ -30,7 +30,8 @@
         <div v-if="error" class="error-msg">{{ error }}</div>
         
         <button type="submit" class="submit-btn" :disabled="isLoading">
-          {{ isLoading ? 'Logging in...' : 'Log In' }}
+          <LoadingDots v-if="isLoading" />
+          <span v-else>Log In</span>
         </button>
       </form>
       
@@ -44,6 +45,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import LoadingDots from '~/components/LoadingDots.vue'
+
+definePageMeta({
+  auth: false,
+})
 
 const supabase = useSupabaseClient()
 const email = ref('')

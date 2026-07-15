@@ -11,6 +11,13 @@
       </div>
     </div>
 
+    <!-- Loading state — shown while AI response is generating -->
+    <div v-if="isLoading" class="response-loading" role="status">
+      <LoadingDots />
+      <p class="loading-label">Seeking wisdom across traditions…</p>
+    </div>
+
+
     <!-- Chapter Breakdown Mode -->
     <div v-if="studyStore.currentResponseMode === 'chapter_breakdown' && studyStore.currentChapterBreakdown"
          class="response-section">
@@ -103,6 +110,7 @@ import { ref } from 'vue'
 import { useStudyStore } from '~/stores/study'
 import { useAuthStore } from '~/stores/auth'
 import { useSessionsStore } from '~/stores/sessions'
+import LoadingDots from '~/components/LoadingDots.vue'
 import type {
   AskResponse,
   ChapterAskResponse,
@@ -278,6 +286,23 @@ const handleSearch = async (query: string) => {
   text-align: center;
   margin-top: var(--spacing-md);
   font-size: 0.9rem;
+}
+
+.response-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-lg) 0;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.loading-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  opacity: 0.6;
+  font-size: 0.95rem;
+  margin: 0;
 }
 
 @media (max-width: 1024px) {

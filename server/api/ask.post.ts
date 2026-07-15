@@ -62,6 +62,41 @@ function computeComparisonCacheKey(query: string): string {
   return computeQueryCacheKey('comparison', query)
 }
 
+/**
+ * Derives a ≤120-char plain-text summary from an already-generated response.
+ * Uses existing fields only — no extra LLM call.
+ */
+function deriveShortSummary(
+  mode: string,
+  response: GeneralQaResponse | MoralQuestionResponse | ComparisonResponse | ChapterBreakdownResponse | StructuredResponse,
+): string {
+  const truncate = (text: string, max = 120): string => {
+    if (!text) return ''
+    if (text.length <= max) return text
+    const cut = text.lastIndexOf(' ', max)
+    return (cut > 0 ? text.slice(0, cut) : text.slice(0, max)) + '…'
+  }
+
+  if (mode === 'chapter_breakdown') {
+    const r = response as ChapterBreakdownResponse
+    return r.chapterTheme ? truncate(r.chapterTheme, 120) : truncate(r.chapterSummary, 120)
+  }
+  if (mode === 'general_qa' || mode === 'moral_question') {
+    const r = response as GeneralQaResponse | MoralQuestionResponse
+    const firstPosition = r.traditions?.[0]?.position
+    return firstPosition ? truncate(firstPosition, 120) : ''
+  }
+  if (mode === 'comparison') {
+    const r = response as ComparisonResponse
+    const firstSimilarity = r.similarities?.[0]
+    const label = `${r.itemA} vs ${r.itemB}`
+    return firstSimilarity ? truncate(`${label}: ${firstSimilarity}`, 120) : truncate(label, 120)
+  }
+  // interpretive / application
+  const r = response as StructuredResponse
+  return r.context ? truncate(r.context, 120) : ''
+}
+
 export default defineEventHandler(
   safeHandler(async (event) => {
     // ── Auth (injected by middleware) ──────────────────────────────────────────
@@ -159,6 +194,7 @@ export default defineEventHandler(
             response_json: typedRes,
             source_model: model,
             prompt_version: promptVersion,
+            short_summary: deriveShortSummary('general_qa', typedRes),
           })
           .select('id')
           .single<{ id: string }>()
@@ -239,6 +275,7 @@ export default defineEventHandler(
             response_json: typedRes,
             source_model: model,
             prompt_version: promptVersion,
+            short_summary: deriveShortSummary('moral_question', typedRes),
           })
           .select('id')
           .single<{ id: string }>()
@@ -319,6 +356,7 @@ export default defineEventHandler(
             response_json: typedRes,
             source_model: model,
             prompt_version: promptVersion,
+            short_summary: deriveShortSummary('comparison', typedRes),
           })
           .select('id')
           .single<{ id: string }>()
@@ -459,6 +497,7 @@ export default defineEventHandler(
             response_json: typedChapterResponse,
             source_model: chapterModel,
             prompt_version: promptVersion,
+            short_summary: deriveShortSummary('chapter_breakdown', typedChapterResponse),
           })
           .select('id')
           .single<{ id: string }>()
@@ -566,6 +605,7 @@ export default defineEventHandler(
           response_json: typedResponse,
           source_model: model,
           prompt_version: promptVersion,
+          short_summary: deriveShortSummary('interpretive', typedResponse),
         })
         .select('id')
         .single<{ id: string }>()

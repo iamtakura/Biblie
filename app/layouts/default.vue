@@ -41,22 +41,40 @@
       <slot />
     </main>
     <InstallPrompt />
+    <ClientOnly>
+      <CommandIntroModal v-if="showCommandIntro" @dismissed="showCommandIntro = false" />
+    </ClientOnly>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '~/stores/auth'
 import { useStudyStore } from '~/stores/study'
 import { useSessionsStore } from '~/stores/sessions'
 import InstallPrompt from '~/components/InstallPrompt.vue'
+import CommandIntroModal from '~/components/CommandIntroModal.vue'
 
 const auth = useAuthStore()
 const router = useRouter()
 const studyStore = useStudyStore()
 const sessionsStore = useSessionsStore()
 const mobileMenuOpen = ref(false)
+const showCommandIntro = ref(false)
+
+onMounted(async () => {
+  if (auth.user) {
+    try {
+      const usage = await $fetch<{ has_seen_command_intro: boolean }>('/api/usage')
+      if (!usage?.has_seen_command_intro) {
+        showCommandIntro.value = true
+      }
+    } catch {
+      // silently ignore — don't block the app
+    }
+  }
+})
 
 const onLogout = async () => {
   mobileMenuOpen.value = false

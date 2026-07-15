@@ -32,12 +32,14 @@ export default defineEventHandler(
           response_json,
           source_model,
           prompt_version,
-          created_at
+          created_at,
+          short_summary
         )
       `)
       .eq('user_id', user!.id ?? (user as any).sub)
       .order('saved_at', { ascending: false })
       .returns<StudyHistoryRow[]>()
+
 
     if (error) {
       console.error('[study-history GET] Supabase error:', error)

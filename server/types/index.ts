@@ -105,6 +105,7 @@ export interface ProfileRow {
     created_at: string
     daily_request_count: number
     daily_reset_at: string
+    has_seen_command_intro: boolean
 }
 
 export interface PassageCacheRow {
@@ -115,6 +116,7 @@ export interface PassageCacheRow {
     source_model: SourceModel
     prompt_version: number
     created_at: string
+    short_summary?: string | null
 }
 
 export interface StudyHistoryRow {
@@ -156,7 +158,7 @@ export interface AskRequestBody {
     session_id?: string
 }
 
-export interface AskResponseMeta {
+export interface BaseAskMeta {
     source_model: SourceModel
     from_cache: boolean
     passage_ref?: string
@@ -167,6 +169,8 @@ export interface AskResponseMeta {
     /** Set when the request was routed via mode: 'auto' — indicates what mode was detected. */
     detected_mode?: string
 }
+
+export interface AskResponseMeta extends BaseAskMeta {}
 
 export interface AskResponse {
     data: StructuredResponse
@@ -189,13 +193,8 @@ export interface ChapterAskResponse {
 
 // ─── New mode API response wrappers ──────────────────────────────────────────
 
-export interface NewModeMeta {
-    source_model: SourceModel
-    from_cache: boolean
+export interface NewModeMeta extends BaseAskMeta {
     cache_key?: string
-    passage_cache_id?: string
-    session_id?: string
-    detected_mode?: string
 }
 
 export interface GeneralQaAskResponse {

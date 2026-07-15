@@ -26,7 +26,7 @@ export default defineEventHandler(
 
     const { data: profile, error } = await serviceClient
       .from('profiles')
-      .select('id, daily_request_count, daily_reset_at, created_at')
+      .select('id, daily_request_count, daily_reset_at, created_at, has_seen_command_intro')
       .eq('id', userId)
       .single<ProfileRow>()
 
@@ -52,6 +52,7 @@ export default defineEventHandler(
       remaining: Math.max(0, maxRequests - count),
       daily_reset_at: nextReset,
       window_expired: windowExpired,
+      has_seen_command_intro: profile!.has_seen_command_intro ?? false,
     }
   }),
 )

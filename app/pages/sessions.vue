@@ -107,24 +107,30 @@ const formatTime = (isoString: string) => {
 
 .loading-state, .empty-state {
   text-align: center;
-  padding: var(--spacing-xl);
-  color: var(--color-text-muted);
+  padding: 3rem var(--spacing-md);
+  color: var(--color-text);
+  opacity: 0.7;
   font-family: var(--font-serif);
   font-style: italic;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
 }
 
 .error-message {
-  color: #ef4444;
+  color: var(--color-secondary);
   padding: var(--spacing-md);
-  background: rgba(239, 68, 68, 0.1);
-  border-radius: var(--radius-md);
+  background: rgba(122, 59, 46, 0.1);
+  border: 1px solid rgba(122, 59, 46, 0.3);
+  border-radius: var(--border-radius);
   margin-bottom: var(--spacing-md);
 }
 
 .sessions-layout {
   display: grid;
   grid-template-columns: 300px 1fr;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-md);
   align-items: start;
 }
 
@@ -132,91 +138,101 @@ const formatTime = (isoString: string) => {
 .sessions-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
   max-height: 70vh;
   overflow-y: auto;
-  padding-right: var(--spacing-sm);
+  padding-right: var(--spacing-xs);
 }
 
 .session-item {
-  padding: var(--spacing-md);
-  background: var(--color-bg-alt);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--border-radius);
   cursor: pointer;
   transition: all 0.2s ease;
+  min-height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .session-item:hover {
-  border-color: var(--color-primary-light);
-  transform: translateY(-1px);
+  border-color: var(--color-primary);
+  background: rgba(201, 151, 78, 0.06);
 }
 
 .session-item.active {
-  background: var(--color-primary-dark);
+  background: rgba(201, 151, 78, 0.12);
   border-color: var(--color-primary);
 }
 
 .session-title {
   font-weight: 600;
   color: var(--color-text);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .session-date {
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  opacity: 0.55;
 }
 
 /* Main Detail */
 .session-detail {
-  background: var(--color-bg-alt);
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
   min-height: 500px;
 }
 
 .detail-empty {
-  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
 }
 
 .detail-title {
   font-family: var(--font-serif);
-  color: var(--color-primary-light);
+  color: var(--color-primary);
   margin-top: 0;
   margin-bottom: var(--spacing-xs);
 }
 
 .detail-meta {
-  color: var(--color-text-muted);
+  opacity: 0.55;
   font-size: 0.9rem;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
   border-bottom: 1px solid var(--color-border);
-  padding-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
 }
 
 .queries-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
 }
 
 .query-card {
-  background: var(--color-bg);
+  background: rgba(0, 0, 0, 0.15);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-sm) var(--spacing-md);
 }
 
 .query-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: var(--spacing-sm);
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
   font-size: 0.85rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .query-mode {
@@ -227,20 +243,20 @@ const formatTime = (isoString: string) => {
 }
 
 .query-time {
-  color: var(--color-text-muted);
+  opacity: 0.55;
 }
 
 .query-text {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--color-text);
   font-style: italic;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
 }
 
 .query-model {
   font-size: 0.8rem;
-  color: var(--color-text-muted);
+  opacity: 0.45;
   text-align: right;
 }
 
@@ -248,9 +264,14 @@ const formatTime = (isoString: string) => {
 @media (max-width: 768px) {
   .sessions-layout {
     grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
   }
   .sessions-list {
-    max-height: 300px;
+    max-height: 280px;
+  }
+  .session-detail {
+    min-height: unset;
   }
 }
 </style>
+

@@ -28,7 +28,7 @@
         </div>
         
         <div class="card-body">
-          <p class="context-preview">{{ getPreview(item.passage_cache.response_json.context) }}</p>
+          <p v-if="getSummary(item)" class="context-preview">{{ getSummary(item) }}</p>
           
           <div v-if="item.personal_note" class="personal-note">
             <span class="note-label">Your Note:</span>
@@ -64,6 +64,32 @@ onMounted(() => {
 const getPreview = (text: string) => {
   if (!text) return ''
   return text.length > 150 ? text.substring(0, 150) + '...' : text
+}
+
+/**
+ * Returns the best available summary for a history entry.
+ * Prefers the server-derived short_summary; falls back to extracting
+ * a preview from the response_json for entries cached before migration 006.
+ */
+const getSummary = (item: any): string => {
+  const pc = item.passage_cache as any
+  if (pc?.short_summary) return pc.short_summary
+
+  const rj = pc?.response_json
+  if (!rj) return ''
+
+  const truncate = (t: string, max = 120) => {
+    if (!t) return ''
+    if (t.length <= max) return t
+    const cut = t.lastIndexOf(' ', max)
+    return (cut > 0 ? t.slice(0, cut) : t.slice(0, max)) + '…'
+  }
+
+  if (rj.chapterTheme) return truncate(rj.chapterTheme)
+  if (rj.context) return truncate(rj.context)
+  if (rj.traditions?.[0]?.position) return truncate(rj.traditions[0].position)
+  if (rj.itemA && rj.itemB) return truncate(`${rj.itemA} vs ${rj.itemB}`)
+  return ''
 }
 </script>
 
@@ -151,6 +177,8 @@ const getPreview = (text: string) => {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem var(--spacing-sm);
   border-bottom: 1px dashed var(--color-border);
   padding-bottom: var(--spacing-sm);
   margin-bottom: var(--spacing-sm);
