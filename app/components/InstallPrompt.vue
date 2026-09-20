@@ -3,7 +3,7 @@
     <div v-if="showPrompt" class="install-prompt-banner" role="banner" aria-label="Install app prompt">
       <div class="prompt-content">
         <div class="prompt-header">
-          <span class="app-icon">B</span>
+          <img src="/icons/favicon-32.png" alt="Biblie icon" class="app-icon-img" width="36" height="36" />
           <div class="prompt-text">
             <span class="prompt-title">Install Biblie</span>
             <span class="prompt-desc" v-if="isIOS">
@@ -134,19 +134,13 @@ const dismissPrompt = () => {
   flex: 1;
 }
 
-.app-icon {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 1.2rem;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
-  border-radius: 4px;
+.app-icon-img {
   width: 36px;
   height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
   flex-shrink: 0;
+  object-fit: contain;
 }
 
 .prompt-text {

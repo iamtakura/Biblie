@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Subtle linear gradient on pages for depth -->
+    <linearGradient id="goldGradLeft" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0%" stop-color="#D4A760"/>
+      <stop offset="100%" stop-color="#BC8A3E"/>
+    </linearGradient>
+    <linearGradient id="goldGradRight" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#D4A760"/>
+      <stop offset="100%" stop-color="#BC8A3E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Solid espresso background -->
+  <rect width="512" height="512" fill="#1C1712"/>
+
+  <g transform="translate(256, 256) scale(0.8) translate(-256, -256)">
+    <!-- Outer Binding / Leather Cover Shadow & Base -->
+    <path d="M 76 352 Q 164 380 252 368 L 256 370 L 260 368 Q 348 380 436 352 L 442 364 Q 350 396 256 388 Q 162 396 70 364 Z" 
+          fill="#7A3B2E" opacity="0.95"/>
+          
+    <!-- Block of Pages (Deckle Edge / Page Depth) -->
+    <path d="M 82 342 Q 166 368 252 356 L 252 366 Q 166 378 76 352 Z" fill="#C9974E" opacity="0.45"/>
+    <path d="M 430 342 Q 346 368 260 356 L 260 366 Q 346 378 436 352 Z" fill="#C9974E" opacity="0.45"/>
+
+    <!-- Left Open Page (Main Silhouette) -->
+    <path d="M 252 168 
+             C 214 144, 138 142, 88 162 
+             C 83 164, 80 168, 80 174
+             L 80 334 
+             C 80 340, 85 344, 90 342 
+             C 138 324, 214 326, 252 348 
+             Z" 
+          fill="url(#goldGradLeft)"/>
+          
+    <!-- Left Page Engraved Woodcut Inner Cutout (Parchment Field) -->
+    <path d="M 244 182 
+             C 210 162, 144 160, 98 178
+             L 98 322
+             C 144 306, 210 308, 244 328
+             Z" 
+          fill="#1C1712"/>
+
+    <!-- Left Page Woodcut Ruled Lines (Manuscript Scripture Text) -->
+    <path d="M 118 208 C 152 196, 194 198, 224 212" stroke="#C9974E" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M 118 238 C 152 226, 194 228, 224 242" stroke="#C9974E" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M 118 268 C 152 256, 194 258, 224 272" stroke="#C9974E" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M 118 298 C 152 286, 194 288, 224 302" stroke="#C9974E" stroke-width="7" stroke-linecap="round" fill="none"/>
+
+    <!-- Right Open Page (Main Silhouette) -->
+    <path d="M 260 168 
+             C 298 144, 374 142, 424 162 
+             C 429 164, 432 168, 432 174
+             L 432 334 
+             C 432 340, 427 344, 422 342 
+             C 374 324, 298 326, 260 348 
+             Z" 
+          fill="url(#goldGradRight)"/>
+
+    <!-- Right Page Engraved Woodcut Inner Cutout -->
+    <path d="M 268 182 
+             C 302 162, 368 160, 414 178
+             L 414 322
+             C 368 306, 302 308, 268 328
+             Z" 
+          fill="#1C1712"/>
+
+    <!-- Right Page Woodcut Ruled Lines -->
+    <path d="M 288 212 C 318 198, 360 196, 394 208" stroke="#C9974E" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M 288 242 C 318 228, 360 226, 394 238" stroke="#C9974E" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M 288 272 C 318 258, 360 256, 394 268" stroke="#C9974E" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M 288 302 C 318 288, 360 286, 394 298" stroke="#C9974E" stroke-width="7" stroke-linecap="round" fill="none"/>
+
+    <!-- Center Binding Crease -->
+    <path d="M 252 164 L 260 164 L 260 360 L 252 360 Z" fill="#C9974E"/>
+    
+    <!-- Burnt Sienna Spine Accent Line -->
+    <path d="M 254 162 L 258 162 L 258 372 L 254 372 Z" fill="#7A3B2E"/>
+
+    <!-- Burnt Sienna Ribbon Bookmark Hanging from Bottom of Codex -->
+    <path d="M 253 350 L 259 350 L 262 422 L 256 414 L 250 422 Z" fill="#7A3B2E"/>
+  </g>
+</svg>

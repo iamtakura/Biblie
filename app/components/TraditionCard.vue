@@ -8,8 +8,12 @@
         {{ block.position }}
       </div>
       
-      <div v-if="block.key_texts && block.key_texts.length" class="key-texts">
-        <span v-for="text in block.key_texts" :key="text" class="text-chip">
+      <div v-if="formattedKeyTexts.length" class="key-texts" aria-label="Key texts">
+        <span 
+          v-for="(text, idx) in formattedKeyTexts" 
+          :key="`${text}-${idx}`" 
+          class="text-chip"
+        >
           {{ text }}
         </span>
       </div>
@@ -22,11 +26,28 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { TraditionBlock } from '~/../server/types'
 
-defineProps<{
+const props = defineProps<{
   block: TraditionBlock
 }>()
+
+const formattedKeyTexts = computed(() => {
+  if (!props.block?.key_texts) return []
+  const list: string[] = []
+  for (const item of props.block.key_texts) {
+    if (!item) continue
+    // Handle comma- or semicolon-separated references within a single string
+    const parts = item.split(/[,;]\s*(?=[A-Za-z0-9])/).map(s => s.trim()).filter(Boolean)
+    if (parts.length > 1) {
+      list.push(...parts)
+    } else {
+      list.push(item.trim())
+    }
+  }
+  return list
+})
 </script>
 
 <style scoped>
@@ -76,19 +97,25 @@ defineProps<{
 .key-texts {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-xs);
+  align-items: center;
+  gap: 8px;
   margin-top: auto; /* Pushes to bottom if card is stretched */
+  padding-top: var(--spacing-xs);
 }
 
 .text-chip {
-  background-color: rgba(240, 228, 200, 0.1);
-  border: 1px solid var(--color-border);
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(201, 151, 78, 0.12);
+  border: 1px solid rgba(201, 151, 78, 0.35);
   border-radius: 12px;
-  padding: 2px 10px;
+  padding: 3px 10px;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--color-text);
-  opacity: 0.9;
+  font-weight: 500;
+  color: var(--color-primary);
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 .sources-text {

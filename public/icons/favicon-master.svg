@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Solid background -->
+  <rect width="32" height="32" rx="6" fill="#1C1712"/>
+  
+  <!-- Book Cover Base (Burnt Sienna) -->
+  <path d="M 4 22.5 Q 10 24.5 15 23.5 L 16 24 L 17 23.5 Q 22 24.5 28 22.5 L 28 24 Q 22 26 16 25.5 Q 10 26 4 24 Z" fill="#7A3B2E"/>
+
+  <!-- Left Page (Solid Antique Gold) -->
+  <path d="M 15 10 
+           C 12.2 8.2, 7.8 8.2, 4.8 9.6 
+           C 4.3 9.8, 4 10.2, 4 10.8 
+           L 4 21 
+           C 4 21.6, 4.5 22, 5.1 21.8 
+           C 8 20.6, 12.2 20.8, 15 22.2 
+           Z" 
+        fill="#C9974E"/>
+        
+  <!-- Left Page Cutout to create the open page look -->
+  <path d="M 14 11.5 C 11.8 10, 8.2 10.2, 5.8 11.2 L 5.8 20 C 8.2 19.2, 11.8 19, 14 20.5 Z" fill="#1C1712"/>
+  <!-- Single manuscript horizontal bar -->
+  <line x1="7.5" y1="15.5" x2="12.5" y2="15.5" stroke="#C9974E" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Right Page (Solid Antique Gold) -->
+  <path d="M 17 10 
+           C 19.8 8.2, 24.2 8.2, 27.2 9.6 
+           C 27.7 9.8, 28 10.2, 28 10.8 
+           L 28 21 
+           C 28 21.6, 27.5 22, 26.9 21.8 
+           C 24 20.6, 19.8 20.8, 17 22.2 
+           Z" 
+        fill="#C9974E"/>
+        
+  <!-- Right Page Cutout -->
+  <path d="M 18 11.5 C 20.2 10, 23.8 10.2, 26.2 11.2 L 26.2 20 C 23.8 19.2, 20.2 19, 18 20.5 Z" fill="#1C1712"/>
+  <!-- Single manuscript horizontal bar -->
+  <line x1="19.5" y1="15.5" x2="24.5" y2="15.5" stroke="#C9974E" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Center Crease & Ribbon Bookmark -->
+  <rect x="15.2" y="9.5" width="1.6" height="13.5" fill="#7A3B2E"/>
+  <polygon points="15.2,23 16.8,23 16.8,26.5 16,25.7 15.2,26.5" fill="#7A3B2E"/>
+</svg>
